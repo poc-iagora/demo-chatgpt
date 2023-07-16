@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Mon Chatbot</h1>
+        <h1>Mon Chatbot IAGORA</h1>
       </header>
       <main>
         <ChatbotComponent />
