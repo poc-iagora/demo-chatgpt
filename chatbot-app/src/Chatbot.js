@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Chatbot, ChatbotMessage, ChatbotTrigger } from 'react-chatbot-kit';
 
 const UserMessage = (props) => {
-  return <ChatbotMessage {...props} isUser />;
+  return <div className="user-message">{props.text}</div>;
 };
 
 const BotMessage = (props) => {
-  return <ChatbotMessage {...props} />;
+  return <div className="bot-message">{props.text}</div>;
 };
 
 const ChatbotComponent = () => {
@@ -56,14 +55,15 @@ const ChatbotComponent = () => {
 
   return (
     <div>
-      <Chatbot
-        messages={messages}
-        components={{
-          ChatbotMessage: BotMessage, // Composant pour les messages du chatbot
-          UserMessage: UserMessage, // Composant pour les messages de l'utilisateur
-          Trigger: ChatbotTrigger, // Composant pour les déclencheurs de chatbot (boutons, liens, etc.)
-        }}
-      />
+      <div className="chatbox">
+        {messages.map((message, index) => {
+          if (message.sender === 'user') {
+            return <UserMessage key={index} text={message.text} />;
+          } else {
+            return <BotMessage key={index} text={message.text} />;
+          }
+        })}
+      </div>
       <div>
         <input
           type="text"
